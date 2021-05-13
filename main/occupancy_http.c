@@ -9,14 +9,25 @@
 
 #include "occupancy_log.h"
 
+/*
+ * Kwaliteit van de compressie van de JPEG beelden. 100 = beste.
+ */
 #define JPG_QUALITY			80
 #define SNPRINTF_BUF			80
 #define MULTIPART_BOUNDARY_CONTENT	"boundary!"
 #define MULTIPART_BOUNDARY_COMMAND	"\r\n" MULTIPART_BOUNDARY_CONTENT "\r\n"
 #define MULTIPART_BOUNDARY_LENGTH	strlen("\r\n" MULTIPART_BOUNDARY_CONTENT "\r\n")
 
+/*
+ * Zodra er een HTTP_GET request op URL "/stream" binnenkomt wordt de request
+ * door deze functie afgehandeld. Hij leest de camera uit, converteert de beelden
+ * zo nodig naar JPEG, en stuurt ze via HTTP naar de client.
+ */
 static esp_err_t handle_stream(httpd_req_t *request);
 
+/*
+ * De "/stream" endpoint
+ */
 const httpd_uri_t stream_uri = {
 	.uri		= "/stream",
 	.method		= HTTP_GET,
@@ -24,8 +35,16 @@ const httpd_uri_t stream_uri = {
 	.user_ctx	= NULL
 };
 
+/*
+ * De handle van de HTTPD server.
+ */
 static httpd_handle_t httpd = NULL;
 
+/*
+ * Start de HTTP server.
+ * Het wifi MOET verbonden zijn met een hotspot, anders crasht deze functie.
+ * Hopelijk is dit al eerder een keer geregeld in occupancy_wifi.c
+ */
 void occupancy_http_start(void) {
 	if (!httpd) {
 		httpd_config_t config = HTTPD_DEFAULT_CONFIG();
@@ -39,6 +58,9 @@ void occupancy_http_start(void) {
 	}
 }
 
+/*
+ * Stopt de HTTP server.
+ */
 void occupancy_http_stop(void) {
 	if (httpd) {
 		httpd_stop(httpd);
@@ -46,6 +68,11 @@ void occupancy_http_stop(void) {
 	}
 }
 
+/*
+ * Zodra er een HTTP_GET request op URL "/stream" binnenkomt wordt de request
+ * door deze functie afgehandeld. Hij leest de camera uit, converteert de beelden
+ * zo nodig naar JPEG, en stuurt ze via HTTP naar de client.
+ */
 static esp_err_t handle_stream(httpd_req_t *request) {
 	esp_err_t	status			= ESP_OK;
 	camera_fb_t	*buffer			= NULL;

@@ -13,9 +13,9 @@ menu "Occupancy Meter Configuratie"
             Wifi wachtwoord
 
     config OCC_MAXIMUM_RETRY
-        int "Maximum retry"
+        int "Maximum aantal retries"
         default 5
         help
-            Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+            Hoeveel keer de ESP zal proberen te verbinden met het wifi netwerk.
 
 endmenu

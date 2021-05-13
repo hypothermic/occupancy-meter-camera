@@ -2,6 +2,9 @@
 
 #include <esp_camera.h>
 
+/*
+ * Initialiseer de OV2620 cameramodule met de juiste instellingen voor ons bordje.
+ */
 void occupancy_cam_init(void) {
 	// Config met AI-Thinker specifieke poorten
 	camera_config_t config;
@@ -34,6 +37,10 @@ void occupancy_cam_init(void) {
 }
 
 // Hebben we waarschijnlijk niet nodig, maar voor de goede orde heb ik dit toch gemaakt, mocht het ooit nodig zijn
+/*
+ * Schakel de camera functionaliteit uit.
+ * Eigenlijk het omgekeerde van occupancy_cam_init.
+ */
 void occupancy_cam_deinit(void) {
 	esp_camera_deinit();
 }

@@ -10,6 +10,10 @@ $ make menuconfig
 $ make flash monitor
 ```
 
+Doe de volgende dingen in menuconfig:
+- Zet PSRAM aan (navigeer naar submenu's "Component Config" --> "ESP32-specific". En dan heet de optie "Support for external, SPI-connected RAM")
+- Voer je wifi access point SSID en wachtwoord in (Occupancy Meter Configuratie submenu)
+
 -----
 
 ESP-IDF

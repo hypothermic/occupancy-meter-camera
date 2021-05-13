@@ -6,8 +6,15 @@
 #include "occupancy_log.h"
 #include "occupancy_wifi.h"
 
+/*
+ * Functie voor het initialiseren van de NVS flash.
+ * Deze memory heeft de esp32-camera library nodig.
+ */
 static void init_nvs(void);
 
+/*
+ * De main entry point van onze applicatie.
+ */
 void app_main(void) {
 	OCC_LOG_INFO("Start Occupancy Meter Camera")
 
@@ -26,6 +33,10 @@ void app_main(void) {
 	OCC_LOG_INFO("Alles gereed")
 }
 
+/*
+ * Functie voor het initialiseren van de NVS flash.
+ * Deze memory heeft de esp32-camera library nodig.
+ */
 static void init_nvs(void) {
 	esp_err_t ret = nvs_flash_init();
 
