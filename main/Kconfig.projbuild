@@ -1,0 +1,21 @@
+menu "Occupancy Meter Configuratie"
+
+    config OCC_WIFI_SSID
+        string "Wifi SSID"
+        default "raim"
+        help
+            Wifi SSID
+
+    config OCC_WIFI_PASSWORD
+        string "Wifi Wachtwoord"
+        default "4dongelek"
+        help
+            Wifi wachtwoord
+
+    config OCC_MAXIMUM_RETRY
+        int "Maximum retry"
+        default 5
+        help
+            Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+endmenu

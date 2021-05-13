@@ -1,0 +1,6 @@
+build
+cmake-build-debug
+components
+sdkconfig
+sdkconfig.old
+.idea

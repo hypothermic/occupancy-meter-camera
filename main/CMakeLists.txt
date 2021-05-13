@@ -1,0 +1,9 @@
+idf_component_register(
+    SRCS
+        "occupancy_cam.c"
+        "occupancy_http.c"
+        "occupancy_main.c"
+        "occupancy_wifi.c"
+    INCLUDE_DIRS
+        ""
+)
