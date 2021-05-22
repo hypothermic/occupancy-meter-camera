@@ -25,6 +25,7 @@ void app_main(void) {
 	init_nvs();
 
 	OCC_LOG_INFO("Initialiseer camera")
+	occupancy_cam_deinit();
 	occupancy_cam_init();
 
 	OCC_LOG_INFO("Initialiseer Wifi")
